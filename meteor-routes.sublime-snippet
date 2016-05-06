@@ -1,0 +1,35 @@
+<snippet>
+    <content><![CDATA[
+////////////////////////////////////////////////////////////////////////////
+//列表
+Router.route('/${1:请填入集合名如post}',{
+  name:'${1:请填入集合名如post}List',
+  waitOn:function () {
+    Meteor.subscribe('${1:请填入集合名如post}s');
+  }
+});
+//详情页
+Router.route('/${1:请填入集合名如post}/:_id',{
+  name:'${1:请填入集合名如post}Page',
+  waitOn:function () {
+    return Meteor.subscribe('${1:请填入集合名如post}s',this.params._id);
+  },
+  data:function () {
+    return ${2:请输入集合大写名字如 Posts}.findOne(this.params._id);
+  }
+});
+//编辑页
+Router.route('/${1:请填入集合名如post}/:_id/edit',{
+  name:'${1:请填入集合名如post}Edit',
+  data:function () {
+    return ${2:请输入集合大写名字如 Posts}.findOne(this.params._id);
+  }
+});
+//提交页
+Router.route('/${1:请填入集合名如post}s/submit',{name:'${1:请填入集合名如post}Submit'});
+]]></content>
+    <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+    <tabTrigger>ms-meteor-routes</tabTrigger>
+    Optional: Set a scope to limit where the snippet will trigger
+    <scope>source.js</scope>
+</snippet>
