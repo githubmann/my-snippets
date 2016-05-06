@@ -1,0 +1,22 @@
+<snippet>
+    <content><![CDATA[
+// Server
+//请meteor add reywood:publish-composite
+//{第一个为find 第二个为children是数组，post是继承至find中找到的每一个post}
+Meteor.publishComposite('${1:名字如topTenPosts}', {
+    find: function() {
+        return ${2:集合名大写 Posts}.find(${3:{}, { sort: { score: -1 }, limit: 10 }});
+    },
+    children: [
+        {
+            find: function(${4:post,继承至find}) {
+                return ${5:Meteor.users}.find();
+            }
+        },
+    ]
+});]]></content>
+    <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+    <tabTrigger>ms-meteor-publish</tabTrigger>
+    <!-- Optional: Set a scope to limit where the snippet will trigger -->
+    <scope>source.js</scope>
+</snippet>
